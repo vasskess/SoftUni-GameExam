@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from game.my_game.models import Game
 from game.my_profile import models
 
 
@@ -13,4 +14,6 @@ def home(request):
 
 
 def dashboard(request):
-    return render(request, "dashboard.html")
+    games = Game.objects.all()
+    context = {"games": games}
+    return render(request, "dashboard.html", context)
