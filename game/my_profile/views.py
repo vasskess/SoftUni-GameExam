@@ -18,16 +18,16 @@ def create_profile(request):
             form.save()
             return redirect("home-page")
     context = {"form": form}
-    return render(request, "my_profile/create-profile.html", context)
+    return render(request, "create-profile.html", context)
 
 
 def profile_details(request):
-    return render(request, "my_profile/details-profile.html")
+    return render(request, "details-profile.html")
 
 
 def edit_profile(request):
-    return render(request, "my_profile/edit-profile.html")
+    return render(request, "edit-profile.html")
 
 
 def delete_profile(request):
-    return render(request, "my_profile/delete-profile.html")
+    return render(request, "delete-profile.html")

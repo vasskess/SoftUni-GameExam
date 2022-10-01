@@ -9,8 +9,8 @@ from game.my_profile import models
 def home(request):
     profile = models.Profile.objects.first()
     context = {'profile': profile}
-    return render(request, 'common/home-page.html', context=context)
+    return render(request, 'home-page.html', context=context)
 
 
 def dashboard(request):
-    return render(request, "common/dashboard.html")
+    return render(request, "dashboard.html")
