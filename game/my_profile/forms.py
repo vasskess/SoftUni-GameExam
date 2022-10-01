@@ -5,7 +5,7 @@ from game.my_profile.models import Profile
 
 
 class ProfileForm(ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+    # password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = Profile

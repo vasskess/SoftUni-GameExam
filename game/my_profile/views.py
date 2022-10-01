@@ -17,8 +17,6 @@ def create_profile(request):
         if form.is_valid():
             form.save()
             return redirect("home-page")
-    else:
-        form = ProfileForm()
     context = {"form": form}
     return render(request, "my_profile/create-profile.html", context)
 
