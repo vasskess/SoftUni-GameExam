@@ -21,8 +21,8 @@ def create_game(request):
 
 def game_details(request, id):
     game = Game.objects.get(id=id)
-
     context = {"game": game}
+
     return render(request, "details-game.html", context)
 
 
@@ -41,4 +41,11 @@ def edit_game(request, id):
 
 
 def delete_game(request, id):
-    return render(request, "delete-game.html")
+    game = Game.objects.get(id=id)
+    form = GameForm(instance=game)
+    context = {"game": game, "form": form}
+
+    if request.method == "POST":
+        game.delete()
+        return redirect("dashboard")
+    return render(request, "delete-game.html", context)
