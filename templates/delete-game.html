@@ -24,12 +24,14 @@
 
     <!-- edit game form -->
     <section id="delete-page" class="auth">
-        <form id="delete" method="POST">
+        <form id="delete" method="POST" >
             {% csrf_token %}
-            <div class="container">
+            <div class="container" >
 
                 <h1>Delete Game</h1>
-                {{ form}}
+                    {{ form }}
+
+                </div>
 
                 <input class="btn submit" type="submit" value="Delete Game">
             </div>

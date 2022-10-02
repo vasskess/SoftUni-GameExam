@@ -5,8 +5,14 @@ from game.my_profile.models import Profile
 
 
 class ProfileForm(ModelForm):
-    # password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = Profile
         fields = ("email", "age", "password")
+
+
+class EditProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = "__all__"

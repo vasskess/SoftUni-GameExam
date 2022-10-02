@@ -4,6 +4,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Game(models.Model):
     title = models.CharField(
         max_length=15,
@@ -20,7 +21,7 @@ class Game(models.Model):
             ("Sports", "Sports"),
             ("Board/Card Game", "Board/Card Game"),
             ("Other", "Other"),
-        )
+        ),
     )
 
     rating = models.FloatField(
@@ -31,13 +32,12 @@ class Game(models.Model):
     )
 
     max_level = models.IntegerField(
-        validators=(MinValueValidator(1),),                          #Maybe use MinValueValidator
+        validators=(MinValueValidator(1),),  # Maybe use MinValueValidator
         null=True,
         blank=True,
     )
 
-    image_url = models.URLField(
-    )
+    image_url = models.URLField()
 
     summary = models.TextField(
         null=True,

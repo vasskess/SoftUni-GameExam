@@ -3,7 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect
 
-from game.my_profile.forms import ProfileForm
+from game.my_game.models import Game
+from game.my_profile.forms import ProfileForm, EditProfileForm
+from game.my_profile.models import Profile
 
 
 # Create your views here.
@@ -22,12 +24,41 @@ def create_profile(request):
 
 
 def profile_details(request):
-    return render(request, "details-profile.html")
+    profile = Profile.objects.first()
+    total_games = Game.objects.all()
+
+    total_rating = sum([game.rating for game in total_games])
+
+    try:
+        average = total_rating / len(total_games)
+    except ZeroDivisionError:
+        average = 0.0
+
+    context = {"profile": profile, "total_games": total_games, "average": average}
+    return render(request, "details-profile.html", context)
 
 
 def edit_profile(request):
-    return render(request, "edit-profile.html")
+    profile = Profile.objects.first()
+    form = EditProfileForm(instance=profile)
+
+    if request.method == "POST":
+        form = EditProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("details-profile")
+
+    context = {"profile": profile, "form": form}
+    return render(request, "edit-profile.html", context)
 
 
 def delete_profile(request):
+    profile = Profile.objects.first()
+    games = Game.objects.all()
+
+    if request.method == "POST":
+        profile.delete()
+        games.delete()
+        return redirect("home-page")
+
     return render(request, "delete-profile.html")

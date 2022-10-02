@@ -9,5 +9,10 @@ from game.my_game.models import Game
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
     list_display = (
-        "title", "category", "rating", "max_level", "image_url", "summary",
+        "title",
+        "category",
+        "rating",
+        "max_level",
+        "image_url",
+        "summary",
     )

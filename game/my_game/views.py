@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from game.my_game.forms import GameForm
+from game.my_game.forms import GameForm, DeleteGameForm
 from game.my_game.models import Game
 
 
@@ -42,10 +42,10 @@ def edit_game(request, id):
 
 def delete_game(request, id):
     game = Game.objects.get(id=id)
-    form = GameForm(instance=game)
-    context = {"game": game, "form": form}
+    form = DeleteGameForm(instance=game)
 
     if request.method == "POST":
         game.delete()
         return redirect("dashboard")
+    context = {"game": game, "form": form}
     return render(request, "delete-game.html", context)

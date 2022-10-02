@@ -8,9 +8,9 @@ from django.db import models
 
 # Create your models here.
 
+
 class Profile(models.Model):
-    email = models.EmailField(
-    )
+    email = models.EmailField()
 
     age = models.IntegerField(
         validators=[
