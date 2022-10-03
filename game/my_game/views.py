@@ -16,14 +16,14 @@ def create_game(request):
             form.save()
             return redirect("dashboard")
     context = {"form": form}
-    return render(request, "create-game.html", context)
+    return render(request, "my_game/create-game.html", context)
 
 
 def game_details(request, id):
     game = Game.objects.get(id=id)
     context = {"game": game}
 
-    return render(request, "details-game.html", context)
+    return render(request, "my_game/details-game.html", context)
 
 
 def edit_game(request, id):
@@ -37,7 +37,7 @@ def edit_game(request, id):
             return redirect("dashboard")
 
     context = {"game": game, "form": form}
-    return render(request, "edit-game.html", context)
+    return render(request, "my_game/edit-game.html", context)
 
 
 def delete_game(request, id):
@@ -48,4 +48,4 @@ def delete_game(request, id):
         game.delete()
         return redirect("dashboard")
     context = {"game": game, "form": form}
-    return render(request, "delete-game.html", context)
+    return render(request, "my_game/delete-game.html", context)

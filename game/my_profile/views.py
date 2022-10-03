@@ -20,7 +20,7 @@ def create_profile(request):
             form.save()
             return redirect("home-page")
     context = {"form": form}
-    return render(request, "create-profile.html", context)
+    return render(request, "my_profile/create-profile.html", context)
 
 
 def profile_details(request):
@@ -35,7 +35,7 @@ def profile_details(request):
         average = 0.0
 
     context = {"profile": profile, "total_games": total_games, "average": average}
-    return render(request, "details-profile.html", context)
+    return render(request, "my_profile/details-profile.html", context)
 
 
 def edit_profile(request):
@@ -49,7 +49,7 @@ def edit_profile(request):
             return redirect("details-profile")
 
     context = {"profile": profile, "form": form}
-    return render(request, "edit-profile.html", context)
+    return render(request, "my_profile/edit-profile.html", context)
 
 
 def delete_profile(request):
@@ -61,4 +61,4 @@ def delete_profile(request):
         games.delete()
         return redirect("home-page")
 
-    return render(request, "delete-profile.html")
+    return render(request, "my_profile/delete-profile.html")

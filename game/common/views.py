@@ -10,10 +10,10 @@ from game.my_profile import models
 def home(request):
     profile = models.Profile.objects.first()
     context = {"profile": profile}
-    return render(request, "home-page.html", context=context)
+    return render(request, "common/home-page.html", context=context)
 
 
 def dashboard(request):
     games = Game.objects.all()
     context = {"games": games}
-    return render(request, "dashboard.html", context)
+    return render(request, "common/dashboard.html", context)
