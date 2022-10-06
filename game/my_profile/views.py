@@ -12,7 +12,7 @@ from game.my_profile.models import Profile
 
 
 def create_profile(request):
-    form = ProfileForm
+    form = ProfileForm()
 
     if request.method == "POST":
         form = ProfileForm(request.POST)

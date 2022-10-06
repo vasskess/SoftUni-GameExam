@@ -8,7 +8,7 @@ from game.my_game.models import Game
 
 
 def create_game(request):
-    form = GameForm
+    form = GameForm()
 
     if request.method == "POST":
         form = GameForm(request.POST)
