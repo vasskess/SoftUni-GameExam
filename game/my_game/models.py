@@ -6,6 +6,9 @@ from django.db import models
 
 
 class Game(models.Model):
+    RATING_MIN_VALUE = 0.1
+    RATING_MAX_VALUE = 5.0
+
     title = models.CharField(
         max_length=15,
         unique=True,
@@ -26,8 +29,8 @@ class Game(models.Model):
 
     rating = models.FloatField(
         validators=(
-            MinValueValidator(0.1),
-            MaxValueValidator(5.0),
+            MinValueValidator(0.1, message=f'Value must be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
+            MaxValueValidator(5.0, message=f'Value must be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
         )
     )
 
@@ -37,7 +40,7 @@ class Game(models.Model):
         blank=True,
     )
 
-    image_url = models.URLField()
+    image_url = models.URLField(verbose_name="Image URL")
 
     summary = models.TextField(
         null=True,
