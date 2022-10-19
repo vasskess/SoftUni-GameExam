@@ -14,7 +14,7 @@ class Profile(models.Model):
 
     age = models.IntegerField(
         validators=[
-            MinValueValidator(12),
+            MinValueValidator(12, message="The age cannot be below 12"),
         ],
     )
 

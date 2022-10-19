@@ -29,13 +29,13 @@ class Game(models.Model):
 
     rating = models.FloatField(
         validators=(
-            MinValueValidator(0.1, message=f'Value must be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
-            MaxValueValidator(5.0, message=f'Value must be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
+            MinValueValidator(0.1, message=f'The rating can be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
+            MaxValueValidator(5.0, message=f'The rating can be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
         )
     )
 
     max_level = models.IntegerField(
-        validators=(MinValueValidator(1),),  # Maybe use MinValueValidator
+        validators=(MinValueValidator(1, message="The max level cannot be below 1"),),  # Maybe use MinValueValidator
         null=True,
         blank=True,
     )
