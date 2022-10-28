@@ -2,7 +2,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
-# Create your models here.
 
 
 class Game(models.Model):
@@ -29,8 +28,8 @@ class Game(models.Model):
 
     rating = models.FloatField(
         validators=(
-            MinValueValidator(0.1, message=f'The rating can be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
-            MaxValueValidator(5.0, message=f'The rating can be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
+            MinValueValidator(RATING_MIN_VALUE, message=f'The rating can be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
+            MaxValueValidator(RATING_MAX_VALUE, message=f'The rating can be between {RATING_MIN_VALUE} and {RATING_MAX_VALUE}'),
         )
     )
 
