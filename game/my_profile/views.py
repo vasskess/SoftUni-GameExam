@@ -4,23 +4,22 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 
 from game.my_game.models import Game
-from game.my_profile.forms import ProfileForm, EditProfileForm
+from game.my_profile.forms import CreateProfileForm, EditProfileForm, DeleteProfileForm
 from game.my_profile.models import Profile
 
 
-# Create your views here.
-
-
 def create_profile(request):
-    form = ProfileForm()
+    form = CreateProfileForm()
 
     if request.method == "POST":
-        form = ProfileForm(request.POST)
+        form = CreateProfileForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("home-page")
     context = {"form": form}
-    return render(request, "my_profile/create-profile.html", context)
+    return render(
+        request, template_name="my_profile/create-profile.html", context=context
+    )
 
 
 def profile_details(request):
@@ -35,7 +34,9 @@ def profile_details(request):
         average = 0.0
 
     context = {"profile": profile, "total_games": total_games, "average": average}
-    return render(request, "my_profile/details-profile.html", context)
+    return render(
+        request, template_name="my_profile/details-profile.html", context=context
+    )
 
 
 def edit_profile(request):
@@ -49,16 +50,21 @@ def edit_profile(request):
             return redirect("details-profile")
 
     context = {"profile": profile, "form": form}
-    return render(request, "my_profile/edit-profile.html", context)
+    return render(
+        request, template_name="my_profile/edit-profile.html", context=context
+    )
 
 
 def delete_profile(request):
     profile = Profile.objects.first()
-    games = Game.objects.all()
+    form = DeleteProfileForm(instance=profile)
 
     if request.method == "POST":
-        profile.delete()
-        games.delete()
+        form = DeleteProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
         return redirect("home-page")
-
-    return render(request, "my_profile/delete-profile.html")
+    context = {"form": form}
+    return render(
+        request, template_name="my_profile/delete-profile.html", context=context
+    )
