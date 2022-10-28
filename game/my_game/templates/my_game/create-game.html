@@ -3,7 +3,7 @@
     <!-- create game section -->
     <section id="create-page" class="auth">
         <!-- create game form -->
-        <form id="create" method="POST">
+        <form id="create" method="POST" action="{% url "create-game" %}">
             {% csrf_token %}
             <div class="container">
                 <!-- create game paragraph -->
