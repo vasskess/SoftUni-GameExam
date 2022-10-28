@@ -12,7 +12,7 @@
                 <div class="image-wrap">
                     <!-- game image -->
                     <img src="{{ game.image_url }}"
-                         alt="{{ g.title }}">
+                         alt="{{ game.title }}">
                 </div>
                 <!-- game title -->
                 <h3>{{ game.title }}</h3>
@@ -20,7 +20,7 @@
                 <h1>{{ game.category }}</h1>
                 <div class="data-buttons">
                     <!-- game details button -->
-                    <a href="{% url "details-game" g.id %}" class="btn details-btn">Details</a>
+                    <a href="{% url "details-game" game.id %}" class="btn details-btn">Details</a>
                 </div>
             </div>
         {% endfor %}
